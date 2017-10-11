@@ -6,7 +6,7 @@
     <AssemblyTitle>DeepStreamNet</AssemblyTitle>
     <VersionPrefix>0.0.0.3-alpha</VersionPrefix>
     <Authors>schulz3000</Authors>
-    <TargetFrameworks>net45;net451;netstandard1.5</TargetFrameworks>
+    <TargetFrameworks>net45;net451;netstandard1.4</TargetFrameworks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>  
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>DeepStreamNet</AssemblyName>
@@ -45,11 +45,11 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.4' ">
     <DefineConstants>$(DefineConstants);COREFX</DefineConstants>
   </PropertyGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.4' ">
     <PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" />
   </ItemGroup>
 

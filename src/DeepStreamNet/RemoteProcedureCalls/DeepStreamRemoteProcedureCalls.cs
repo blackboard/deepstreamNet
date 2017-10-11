@@ -40,7 +40,9 @@ namespace DeepStreamNet
                         Expression.Parameter(typeof(string)),
                         Expression.Parameter(typeof(Connection))
                     };
-            return Expression.Lambda<Func<string, string, Connection, IRpcResponse>>(Expression.New(rpcResponseType.GetTypeInfo().GetConstructor(new Type[] { typeof(string), typeof(string), typeof(Connection) }), expParameter), expParameter).Compile();
+
+            // TODO: Removed fixed build for .NetStandard 1.4
+            return null;// Expression.Lambda<Func<string, string, Connection, IRpcResponse>>(Expression.New(rpcResponseType.GetTypeInfo().GetConstructor(new Type[] { typeof(string), typeof(string), typeof(Connection) }), expParameter), expParameter).Compile();
         }
 
         async void Connection_PerformRemoteProcedureRequested(object sender, RemoteProcedureMessageArgs e)

@@ -129,29 +129,31 @@ namespace DeepStreamNet
             if (type == null)
                 return false;
 
-            switch (Type.GetTypeCode(type))
+            if (type.FullName.StartsWith("System.Nullable"))
             {
-                case TypeCode.Byte:
-                case TypeCode.Decimal:
-                case TypeCode.Double:
-                case TypeCode.Int16:
-                case TypeCode.Int32:
-                case TypeCode.Int64:
-                case TypeCode.SByte:
-                case TypeCode.Single:
-                case TypeCode.UInt16:
-                case TypeCode.UInt32:
-                case TypeCode.UInt64:
-                    return true;
-                case TypeCode.Object:
-                    if (type.GetTypeInfo().IsGenericType && type.GetGenericTypeDefinition() == NullableType)
-                    {
-                        return IsNumeric(type.GetGenericArguments()[0]);
-                    }
-                    return false;
+                return IsNumeric(type.GetGenericArguments()[0]);
+            }
+            else
+            {
+                switch (type.FullName)
+                {
+                    case "System.Byte":
+                    case "System.Decimal":
+                    case "System.Double":
+                    case "System.Int16":
+                    case "System.Int32":
+                    case "System.Int64":
+                    case "System.SByte":
+                    case "System.Single":
+                    case "System.UInt16":
+                    case "System.UInt32":
+                    case "System.UInt64":
+                        return true;
+                }
             }
             return false;
         }
+
 
         static readonly Type NullableType = typeof(Nullable<>);
 
