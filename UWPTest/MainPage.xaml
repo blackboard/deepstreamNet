@@ -8,6 +8,19 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <StackPanel Margin="0,0,0,42">
+            <StackPanel  Orientation="Horizontal">
+                <Button Margin="2" x:Name="btnConnect" Content="Connect" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="btnConnect_ClickAsync"/>
+                <Button Margin="2" Content="Button" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            </StackPanel>
+            <TextBlock Text="Record:" Margin="0, 10,0,0"/>
+            <TextBox x:Name="txtRecordName" Text="session/SESSIONID/netstats/user/USERID" ToolTipService.ToolTip="Record name"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Margin="5" Content="Read" x:Name="btnRecordRead" Click="btnRecordRead_ClickAsync"/>
+                <Button Margin="5" Content="Write" x:Name="btnRecordWrite" Click="btnRecordWrite_ClickAsync"/>
+                <TextBox x:Name="txtRecordData" Margin="5" ToolTipService.ToolTip="data to write" HorizontalAlignment="Stretch"/>
+            </StackPanel>
+            <TextBox TextWrapping="Wrap" Text="TextBox" Height="273" x:Name="txtOutput"/>
+        </StackPanel>
     </Grid>
 </Page>
