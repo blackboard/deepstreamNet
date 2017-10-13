@@ -8,6 +8,29 @@ using System.Threading.Tasks;
 
 namespace UWPTest.DeepStream
 {
+    class EventArg
+    {
+        private String _name;
+        private object _data;
+        public EventArg(String name, object data)
+        {
+            _name = name;
+            _data = data;
+        }
+
+        public String Name
+        {
+            get { return _name; }
+        }
+
+        public object Data
+        {
+            get { return _data; }
+        }
+
+
+    }
+
     class Connection
     {
         static private Connection _instance;
@@ -16,6 +39,8 @@ namespace UWPTest.DeepStream
 
         private DeepStreamClient _client;
         private String _lastError = NoError;
+
+        public EventHandler<EventArg> OnEventRecieved;
 
         static public Connection Instance
         {
@@ -89,6 +114,62 @@ namespace UWPTest.DeepStream
             else
             {
                 _lastError = "Not Connected";
+            }
+
+            return result;
+        }
+
+        public bool Publish(String name, String value)
+        {
+            ResetLastError();
+            bool result = false;
+
+            if (_client != null)
+            {
+                try
+                {
+                    _client.Events.Publish(name, value);
+                    result = true;
+                }
+                catch (Exception ex)
+                {
+                    _lastError = ex.Message;
+                }
+            }
+            else
+            {
+                _lastError = "Not Connected";
+            }
+
+            return result;
+        }
+
+        public bool SubscribeEvent(String name)
+        {
+            ResetLastError();
+            bool result = false;
+
+            if (_client != null)
+            {
+                try
+                {
+                    var subsription = _client.Events.SubscribeAsync(name, x =>
+                    {
+                        if (OnEventRecieved != null)
+                        {
+                            OnEventRecieved.Invoke(this, new EventArg(name, x));
+                        }
+                    });
+                    result = true;
+                }
+                catch (Exception ex)
+                {
+                    _lastError = ex.Message;
+                }
+            }
+            else
+            {
+                _lastError = "Not connected";
             }
 
             return result;

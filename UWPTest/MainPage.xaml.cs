@@ -30,7 +30,7 @@ namespace UWPTest
         {
             this.InitializeComponent();
 
-            
+            Connection.Instance.OnEventRecieved += OnDSEventRecieved;
         }
 
         private async void btnConnect_ClickAsync(object sender, RoutedEventArgs e)
@@ -89,6 +89,39 @@ namespace UWPTest
             {
                 AppendToOutput(String.Format("Failed to get record: {0}", Connection.Instance.LastError));
             }
+        }
+
+        private void btnEventPublish_Click(object sender, RoutedEventArgs e)
+        {
+            if (Connection.Instance.Publish(txtEventName.Text, txtEventValue.Text))
+            {
+                AppendToOutput("Event published.");
+            }
+            else
+            {
+                AppendToOutput("Event publishing failed: " + Connection.Instance.LastError);
+            }
+        }
+
+        private void btnEventSubscribe_Click(object sender, RoutedEventArgs e)
+        {
+            if (Connection.Instance.SubscribeEvent(txtSubscribeEventName.Text))
+            {
+                AppendToOutput("Subscribed event: " + txtSubscribeEventName.Text);
+            }
+            else
+            {
+                AppendToOutput("Failed to Subscribed event: " + txtSubscribeEventName.Text + " error: " + 
+                    Connection.Instance.LastError);
+            }
+        }
+
+        private void OnDSEventRecieved(object sender, EventArg data)
+        {
+            Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                AppendToOutput(String.Format("Event occured: " + data.Name + ": " + data.Data.ToString()));
+            });
         }
 
         //        private updateUI

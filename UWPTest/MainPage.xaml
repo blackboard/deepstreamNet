@@ -11,7 +11,6 @@
         <StackPanel Margin="0,0,0,42">
             <StackPanel  Orientation="Horizontal">
                 <Button Margin="2" x:Name="btnConnect" Content="Connect" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="btnConnect_ClickAsync"/>
-                <Button Margin="2" Content="Button" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
             </StackPanel>
             <TextBlock Text="Record:" Margin="0, 10,0,0"/>
             <TextBox x:Name="txtRecordName" Text="session/SESSIONID/netstats/user/USERID" ToolTipService.ToolTip="Record name"/>
@@ -20,6 +19,21 @@
                 <Button Margin="5" Content="Write" x:Name="btnRecordWrite" Click="btnRecordWrite_ClickAsync"/>
                 <TextBox x:Name="txtRecordData" Margin="5" ToolTipService.ToolTip="data to write" HorizontalAlignment="Stretch"/>
             </StackPanel>
+            <TextBlock Text="Events" />
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="btnEventPublish" Content="Publish" Margin="0, 0, 5, 0" Click="btnEventPublish_Click"/>
+                <TextBlock  Text="Name:"/>
+                <TextBox x:Name="txtEventName" Text="TestEvent"  VerticalAlignment="Stretch"/>
+                <TextBlock Text="Value:" Margin="5, 0, 0, 0"/>
+                <TextBox x:Name="txtEventValue" Text="Hello World" VerticalAlignment="Stretch"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="btnEventSubscribe" Content="Subscribe" Margin="0, 0, 5, 0" Click="btnEventSubscribe_Click"/>
+                <TextBlock  Text="EventName:"/>
+                <TextBox x:Name="txtSubscribeEventName" Text="TestEvent" VerticalAlignment="Stretch"/>
+            </StackPanel>
+            <Button x:Name="btnListenEvents" Content="Listen all events" Margin="0,5,0,0"/>
+            <TextBlock Text="Log:"/>
             <TextBox TextWrapping="Wrap" Text="TextBox" Height="273" x:Name="txtOutput"/>
         </StackPanel>
     </Grid>
