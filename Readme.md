@@ -1,3 +1,26 @@
+# Read following
+This is clone of original DeepStreamNet library, modified to support .NetStandard 1.4. .NetStandard 1.4 is needed by UWP application, because current version of UWP framework supports up to version 1.4.
+
+## Referencing library in UPW project
+Adding referece using VS IDE is not working for some reason, so reference needs to be added manually.
+
+1. Open UWP project (*.csproj) in text mode
+2. Add following code snipped to previously open project file
+
+```
+<ItemGroup>
+    <ProjectReference Include="..\src\DeepStreamNet\DeepStreamNet.csproj">
+      <Project>{999F6955-8C07-42B5-B057-E7F96A1BF2CD}</Project>
+      <Name>DeepStreamNet</Name>
+    </ProjectReference>
+  </ItemGroup>
+```
+
+3. Replace ```Include``` path by relative path to DeepStreamNet.csproj.
+4. Replace ```Project``` GUID by proper DeepStreamNet. Proper GUID can be found in solution file.
+
+### Original DeepStreamNet readme follows
+
 DeepStreamNet
 =============
 
