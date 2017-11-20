@@ -1,7 +1,19 @@
-DeepStreamNet
+DeepStreamNet for .NetStandard 1.4
 =============
-
 dotnet Client for [deepstream.io](https://deepstream.io)
+
+This is modified DeepStreamNet library for .NetStandard 1.4, so it can be used in UWP applications.
+
+## Using in UWP
+Unfortunately, Reference needs to be added manually. Open Project file and add following code snippet. Modify ```Project``` GUID and ```ProjectReference Include``` path if needed.
+```xml
+<ItemGroup>
+    <ProjectReference Include="..\..\NetStandard\NetStandard.csproj">
+	<Project>{62bc3fca-df74-4732-85e4-487419cfa5b7}</Project>    <!-- Project GUID from solution -->
+	<Name>NetStandard</Name>
+    </ProjectReference>
+</ItemGroup>
+```
 
 ## Builds
 [![Build status](https://ci.appveyor.com/api/projects/status/aj8op4emvlivn7jx/branch/develop?svg=true)](https://ci.appveyor.com/project/schulz3000/deepstreamnet/branch/develop) [![Build Status](https://travis-ci.org/schulz3000/deepstreamNet.svg?branch=develop)](https://travis-ci.org/schulz3000/deepstreamNet)
